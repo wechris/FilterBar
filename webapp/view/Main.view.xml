@@ -1,0 +1,69 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" controllerName="sap.training.filterbar.controller.Main"><App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<fb:FilterBar search="onSearch" reset="onReset">
+						<fb:filterItems>
+							<fb:FilterItem name="A" label="{i18n>CompanyName}">
+								<fb:control>
+									<Input type="Text"/>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="B" label="{i18n>country}">
+								<fb:control>
+									<Select id="country" items="{ path: 'selection>/Countries', sorter: { path: 'Country' } }">
+										<core:Item key="{selection>Country}" text="{selection>Country}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>	
+							<fb:FilterItem name="C" label="{i18n>ContactTitle}">
+								<fb:control>
+									<Select id="ContactTitle" items="{ path: 'selection>/Titles', sorter: { path: 'ContactTitle' } }">
+										<core:Item key="{selection>ContactTitle}" text="{selection>ContactTitle}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+						</fb:filterItems>
+					</fb:FilterBar>
+						<Table id="idProductsTable" inset="false" items="{ path: 'data>/Customers', sorter: { path: 'Name' } }">
+						<!--<headerToolbar>-->
+						<!--	<Toolbar>-->
+						<!--		<Title level="H2" text="Products"/>-->
+						<!--		<ToolbarSpacer/>-->
+						<!--		<Button icon="sap-icon://filter" onpress="doFilter"/>-->
+						<!--		<Button icon="sap-icon://drop-down-list" onpress="doViewSettings"/>-->
+						<!--		<Button icon="sap-icon://sort" onpress="doSort"/>-->
+						<!--		<Button icon="sap-icon://action-settings" onpress="doSettings"/>-->
+						<!--	</Toolbar>-->
+						<!--</headerToolbar>-->
+						<columns>
+							<Column width="12em">
+								<Text text="ID"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="CompanyName"/>
+							</Column>
+							<Column demandPopin="true" hAlign="Right" minScreenWidth="Tablet">
+								<Text text="ContactName"/>
+							</Column>
+							<Column demandPopin="true" hAlign="Center" minScreenWidth="Tablet">
+								<Text text="ContactTitle"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<ObjectIdentifier text="{data>Id}" title="{Name}"/>
+									<Text text="{data>CompanyName}"/>
+									<Text text="{data>ContactName}"/>
+									<Text text="{data>ContactTitle}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table> 		
+					
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
